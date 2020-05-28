@@ -10,15 +10,21 @@ StyledExpansionPanel {
     isTopPanel: true
     isEnabled: true
 
-    RowLayout {
+    ColumnLayout {
         Label {
             text: "Test"
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
         }
-        ColumnLayout {
+        RowLayout {
             Label {
-                text: "USB"
+                text: "CCID"
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+            }
+
+            ButtonGroup {
+                id: childGroup
+                exclusive: false
+                checkState: a.checkState
             }
 
             CheckBox {
@@ -26,6 +32,7 @@ StyledExpansionPanel {
                 indicator.height: 16
 
                 id: a
+                checkState: childGroup.checkState
 
             }
             CheckBox {
@@ -34,10 +41,28 @@ StyledExpansionPanel {
                 id: b
 
             }
+
+        }
+
+        RowLayout {
+            Label {
+                text: "FIDO"
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+            }
+
             CheckBox {
                 indicator.width: 16
                 indicator.height: 16
-                id: c
+
+                id: d
+
+                ButtonGroup.group: childGroup
+
+            }
+            CheckBox {
+                indicator.width: 16
+                indicator.height: 16
+                id: e
 
             }
 
