@@ -10,21 +10,43 @@ StyledExpansionPanel {
     isTopPanel: true
     isEnabled: true
 
-    ColumnLayout {
-        Label {
-            text: "Test"
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+    ToolButton {
+        property bool isExpanded: false
+        id: expandButton
+        onClicked:{
+            a.visible = !a.visible
+            isExpanded = a.visible
         }
+        icon.width: 24
+        icon.source: isExpanded ? "../images/up.svg" : "../images/down.svg"
+        icon.color: primaryColor
+        opacity: hovered ? fullEmphasis : lowEmphasis
+        visible: isEnabled
+        focus: true
+        MouseArea {
+            anchors.fill: parent
+            cursorShape: Qt.PointingHandCursor
+            enabled: false
+        }
+    }
+
+    ColumnLayout {
+        RowLayout {
+            Text {
+                text: "USB"
+                color: "white"
+            }
+            Text {
+                text: "NFC"
+                color: "white"
+            }
+
+        }
+
         RowLayout {
             Label {
                 text: "CCID"
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-            }
-
-            ButtonGroup {
-                id: childGroup
-                exclusive: false
-                checkState: a.checkState
             }
 
             CheckBox {
@@ -32,15 +54,18 @@ StyledExpansionPanel {
                 indicator.height: 16
 
                 id: a
-                checkState: childGroup.checkState
+                visible: false
 
             }
+
             CheckBox {
                 indicator.width: 16
                 indicator.height: 16
+
                 id: b
 
             }
+
 
         }
 
@@ -55,14 +80,6 @@ StyledExpansionPanel {
                 indicator.height: 16
 
                 id: d
-
-                ButtonGroup.group: childGroup
-
-            }
-            CheckBox {
-                indicator.width: 16
-                indicator.height: 16
-                id: e
 
             }
 
