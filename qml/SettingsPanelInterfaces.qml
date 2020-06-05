@@ -14,105 +14,53 @@ StyledExpansionPanel {
         ColumnLayout {
             RowLayout {
                 Text {
+                    id: text
+                    text: "Interface"
+                    color: "white"
+                    Layout.minimumWidth: 200
+                }
+                Text {
+                    id: text2
                     text: "USB"
                     color: "white"
                 }
                 Text {
+                    id: text3
                     text: "NFC"
                     color: "white"
                 }
-
             }
 
             RowLayout {
                 Label {
-                    text: "CCID"
+                    text: "CCID (smart card)"
+                    Layout.minimumWidth: 200
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
+
+                ButtonGroup {
+                        id: ccidBtnGrp
+                        exclusive: false
+                        checkState: ccidButton1.checkState
+                    }
 
                 CheckBox {
                     indicator.width: 16
                     indicator.height: 16
 
                     id: ccidButton1
+                    checkState: ccidBtnGrp.checkState
 
-                }
-
-
-            }
-
-            RowLayout {
-                Label {
-                    id: ccidChild1Text
-                    text: "CCID"
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                    visible: false
                 }
 
                 CheckBox {
                     indicator.width: 16
                     indicator.height: 16
 
-                    id: ccidChild1
-                    visible: false
-
-                }
-            }
-
-            RowLayout {
-                Label {
-                    text: "FIDO"
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                }
-
-                CheckBox {
-                    indicator.width: 16
-                    indicator.height: 16
-
-                    id: fidoButton1
-
-                }
-            }
-
-            RowLayout {
-                Label {
-                    id: fidoChild1Text
-                    text: "FIDO2"
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                    visible: false
-                }
-
-                CheckBox {
-                    indicator.width: 16
-                    indicator.height: 16
-
-                    id: fidoChild1
-                    visible: false
-
-                }
-            }
-
-            RowLayout {
-                Label {
-                    text: "OTP"
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                }
-
-                CheckBox {
-                    indicator.width: 16
-                    indicator.height: 16
-
-                    id: otpButton1
+                    id: ccidButton2
 
                 }
 
-            }
-
-        }
-
-        ColumnLayout {
-            anchors.left: parent.right
-            RowLayout {
                 ToolButton {
                         property bool isExpanded: false
                         id: expandButton
@@ -133,15 +81,70 @@ StyledExpansionPanel {
                             enabled: false
                         }
                     }
+
+
+
+
             }
 
             RowLayout {
+                Label {
+                    id: ccidChild1Text
+                    text: "CCID"
+                    Layout.minimumWidth: 200
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    visible: false
+                }
+
+                CheckBox {
+                    indicator.width: 16
+                    indicator.height: 16
+
+                    id: ccidChild1
+                    visible: false
+                    ButtonGroup.group: ccidBtnGrp
+
+                }
+            }
+
+            RowLayout {
+                ButtonGroup {
+                        id: fidoBtnGrp
+                        exclusive: false
+                        checkState: fidoButton1.checkState
+                    }
+
+                Label {
+                    text: "FIDO (WebAuthn)"
+                    Layout.minimumWidth: 200
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                }
+
+                CheckBox {
+                    indicator.width: 16
+                    indicator.height: 16
+
+                    id: fidoButton1
+                    checkState: fidoBtnGrp.checkState
+
+                }
+
+                CheckBox {
+                    indicator.width: 16
+                    indicator.height: 16
+
+                    id: fidoButton2
+
+                }
+
                 ToolButton {
                     property bool isExpanded: false
                     id: expandButton2
                     onClicked:{
                         fidoChild1.visible = !fidoChild1.visible
                         fidoChild1Text.visible = !fidoChild1Text.visible
+                        fidoChild2.visible = !fidoChild2.visible
+                        fidoChild2Text.visible = !fidoChild2Text.visible
                         isExpanded = fidoChild1.visible
                     }
                     icon.width: 24
@@ -157,7 +160,76 @@ StyledExpansionPanel {
                     }
                 }
             }
+
+            RowLayout {
+                Label {
+                    id: fidoChild1Text
+                    text: "FIDO2"
+                    Layout.minimumWidth: 200
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    visible: false
+                }
+
+                CheckBox {
+                    indicator.width: 16
+                    indicator.height: 16
+
+                    id: fidoChild1
+                    visible: false
+                    ButtonGroup.group: fidoBtnGrp
+
+                }
+            }
+
+            RowLayout {
+                Label {
+                    id: fidoChild2Text
+                    text: "FIDO U2F"
+                    Layout.minimumWidth: 200
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    visible: false
+                }
+
+                CheckBox {
+                    indicator.width: 16
+                    indicator.height: 16
+
+                    id: fidoChild2
+                    visible: false
+                    ButtonGroup.group: fidoBtnGrp
+
+                }
+            }
+
+            RowLayout {
+                Label {
+                    text: "OTP"
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    Layout.minimumWidth: 200
+                }
+
+                CheckBox {
+                    indicator.width: 16
+                    indicator.height: 16
+
+                    id: otpButton1
+
+                }
+
+                CheckBox {
+                    indicator.width: 16
+                    indicator.height: 16
+
+                    id: otpButton2
+
+                }
+
+
+
+            }
+
         }
+
     }
 
 }
