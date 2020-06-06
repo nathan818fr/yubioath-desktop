@@ -35,7 +35,7 @@ Flickable {
         if (!!device) {
             return qsTr("Serial number: %1").arg(!!device.serial ? device.serial : "Not available")
         } else if (yubiKey.availableDevices.length > 0
-                   && !yubiKey.availableDevices.some(dev => dev.selectable)) {
+                   && !yubiKey.availableDevices.some(function(dev) { return dev.selectable })) {
             return qsTr("No compatible device found")
         } else {
             return qsTr("No device found")

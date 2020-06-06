@@ -243,12 +243,12 @@ Python {
             if (resp.success) {
                 availableDevices = resp.devices
                 // no current device, or current device is no longer available, pick a new one
-                if (!currentDevice || !availableDevices.some(dev => dev.serial === currentDevice.serial)) {
+                if (!currentDevice || !availableDevices.some(function(dev) { return dev.serial === currentDevice.serial })) {
                     // new device is being loaded, clear any old device
                     clearCurrentDeviceAndEntries()
-                    if (availableDevices.some(dev => dev.selectable)) {
+                    if (availableDevices.some(function(dev) { return dev.selectable })) {
                         // pick the first selectable device
-                        currentDevice = resp.devices.find(dev => dev.selectable)
+                        currentDevice = resp.devices.find(function(dev) { return dev.selectable })
                         calculateAll(navigator.goToCredentialsIfNotInSettings)
                     } else {
                         // no selectable device (will land in no Insert YubiKey view)
@@ -256,7 +256,7 @@ Python {
                     }
                 } else {
                     // the same one but potentially updated
-                    currentDevice = resp.devices.find(dev => dev.serial === currentDevice.serial)
+                    currentDevice = resp.devices.find(function(dev) { return dev.serial === currentDevice.serial })
                 }
             } else {
                 console.log("refreshing devices failed:", resp.error_id)

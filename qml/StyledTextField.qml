@@ -3,7 +3,7 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import QtQuick.Controls.Material 2.2
 import QtGraphicalEffects 1.0
-import Qt.labs.platform 1.1
+import Qt.labs.platform 1.0
 
 Item {
 
@@ -102,7 +102,7 @@ Item {
                     return required ? labelText + " *" : labelText
                 }
             }
-            placeholderTextColor: formPlaceholderText
+            // placeholderTextColor: formPlaceholderText
 
             MouseArea {
                 anchors.fill: parent

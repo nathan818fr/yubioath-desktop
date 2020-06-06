@@ -3,9 +3,9 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import QtQuick.Controls.Material 2.2
 import Qt.labs.settings 1.0
-import Qt.labs.platform 1.1
+import Qt.labs.platform 1.0
 import QtQuick.Window 2.2
-import QtQml 2.12
+import QtQml 2.11
 
 ApplicationWindow {
 
@@ -216,7 +216,7 @@ ApplicationWindow {
         })
         for (var i = 0; i < entries.count; i++) {
             var entry = entries.get(i)
-            if (!!entry.credential && settings.favorites.includes(entry.credential.key)) {
+            if (!!entry.credential && settings.favorites.indexOf(entry.credential.key) !== -1) {
                 favs.append(entry)
             }
         }

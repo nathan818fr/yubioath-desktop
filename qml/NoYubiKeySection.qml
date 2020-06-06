@@ -28,7 +28,7 @@ ColumnLayout {
 
         Label {
             text: {
-                if (yubiKey.availableDevices.length > 0 && !yubiKey.availableDevices.some(dev => dev.selectable)) {
+                if (yubiKey.availableDevices.length > 0 && !yubiKey.availableDevices.some(function(dev) { return dev.selectable })) {
                     return qsTr("Unsupported device")
                 }
                 else {
@@ -44,14 +44,14 @@ ColumnLayout {
         }
         Label {
             text: {
-                if (yubiKey.availableDevices.length > 0 && !yubiKey.availableDevices.some(dev => dev.selectable)) {
+                if (yubiKey.availableDevices.length > 0 && !yubiKey.availableDevices.some(function(dev) { return dev.selectable })) {
                     return qsTr("Yubico Authenticator requires a CCID/OTP enabled and compatible YubiKey.")
                 }
                 else {
                     return ""
                 }
             }
-            visible: (yubiKey.availableDevices.length > 0 && !yubiKey.availableDevices.some(dev => dev.selectable))
+            visible: (yubiKey.availableDevices.length > 0 && !yubiKey.availableDevices.some(function(dev) { return dev.selectable }))
             Layout.minimumWidth: 300
             Layout.maximumWidth: app.width - dynamicMargin
                                  < dynamicWidth ? app.width - dynamicMargin : dynamicWidth
@@ -90,7 +90,7 @@ ColumnLayout {
         }
         Label {
             text: {
-                var t = yubiKey.availableReaders.filter(reader => reader.toLowerCase().includes(settings.customReaderName.toLowerCase())).toString()
+                var t = yubiKey.availableReaders.filter(function(reader) { return reader.toLowerCase().indexOf(settings.customReaderName.toLowerCase()) !== -1 }).toString()
                 if (t.length === 0)
                     t = qsTr("Custom reader not found!")
                 return t

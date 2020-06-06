@@ -46,7 +46,8 @@ Flickable {
         addCredential(true)
     }
 
-    function addCredential(copy = false) {
+    function addCredential(copy) {
+        if (copy === undefined) copy = false;
 
         function callback(resp) {
             if (resp.success) {

@@ -25,14 +25,14 @@ Pane {
 
     property bool touchCredential: !!credential && credential && credential.touch
 
-    property bool favorite: !!credential ? settings.favorites.includes(credential.key) : false
+    property bool favorite: !!credential ? (settings.favorites.indexOf(credential.key) !== -1) : false
 
     Layout.fillHeight: true
     Layout.fillWidth: true
 
     function toggleFavorite() {
         if (favorite) {
-            settings.favorites = settings.favorites.filter(fav => fav !== credential.key)
+            settings.favorites = settings.favorites.filter(function(fav) { return fav !== credential.key })
         } else {
             let favs = settings.favorites
             favs.push(credential.key)

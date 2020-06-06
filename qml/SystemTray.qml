@@ -1,11 +1,12 @@
 import QtQuick 2.9
-import Qt.labs.platform 1.1
-import QtQml 2.12
+import Qt.labs.platform 1.0
+import QtQml 2.11
 
 SystemTrayIcon {
     visible: settings.closeToTray
-    icon.source: Qt.platform.os == "osx" ? "../images/menubaricon.png" : "../images/windowicon.png"
-    icon.mask: Qt.platform.os == "osx"
+    // icon.source: Qt.platform.os == "osx" ? "../images/menubaricon.png" : "../images/windowicon.png"
+    // icon.mask: Qt.platform.os == "osx"
+    iconSource: Qt.platform.os == "osx" ? "../images/menubaricon.png" : "../images/windowicon.png"
     onActivated: {
         if (reason === SystemTrayIcon.DoubleClick) {
             showWindow()

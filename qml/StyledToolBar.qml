@@ -3,7 +3,7 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import QtQuick.Controls.Material 2.2
 import QtGraphicalEffects 1.0
-import Qt.labs.platform 1.1 as PopUpMenu
+import Qt.labs.platform 1.0 as PopUpMenu
 
 ToolBar {
     id: toolBar
@@ -148,7 +148,7 @@ ToolBar {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 placeholderText: qsTr("Quick find")
-                placeholderTextColor: isDark() ? "#B7B7B7" : "#767676"
+                // placeholderTextColor: isDark() ? "#B7B7B7" : "#767676"
                 leftPadding: 28
                 rightPadding: 8
                 width: parent.width
